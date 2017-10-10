@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NrBtn from './NrBtn'
+import Operator from './Operator'
 import Output from './Output'
 import Paper from 'material-ui/Paper'
 import styles from './styles.module.styl'
@@ -8,14 +9,23 @@ class Calc extends Component {
   constructor () {
     super()
     this.state = {
-      exp: ''
+      exp: '',
+      firstNr: '',
+      secondNr: '',
+      operator: ''
     }
   }
   
   addToExp (val) {
-    this.setState({
-      exp: this.state.exp + val
-    })
+    if (this.state.operator === '') {
+      this.setState({
+        firstNr: this.state.firstNr + val
+      })
+    } else {
+      this.setState({
+        secondNr: this.state.secondNr + val
+      })
+    }
   }
 
   render () {
@@ -26,21 +36,21 @@ class Calc extends Component {
           <NrBtn number={7} handleClick={this.addToExp.bind(this)} />
           <NrBtn number={8} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={9} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={'/'} />
-          <NrBtn number={'%'} />
+          <Operator number={'/'} />
+          <Operator number={'%'} />
           <NrBtn number={4} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={5} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={6} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={'*'} />
-          <NrBtn number={'1/x'} />
+          <Operator number={'*'} />
+          <Operator number={'1/x'} />
           <NrBtn number={1} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={2} handleClick={this.addToExp.bind(this)} />
           <NrBtn number={3} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={'-'} />
-          <NrBtn number={'+'} />
-          <NrBtn number={','} />
+          <Operator number={'-'} />
+          <Operator number={'+'} />
+          <Operator number={','} />
           <NrBtn number={'0'} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={'='} />
+          <Operator number={'='} />
         </div>
       </Paper>
     )
