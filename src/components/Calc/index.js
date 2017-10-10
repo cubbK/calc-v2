@@ -16,7 +16,7 @@ class Calc extends Component {
     }
   }
   
-  addToExp (val) {
+  addToExp = (val) => {
     if (this.state.operator === '') {
       this.setState({
         firstNr: this.state.firstNr + val
@@ -32,24 +32,24 @@ class Calc extends Component {
     return (
       <Paper className={styles.container}>
         <div >
-          <Output exp={this.state.exp} />
-          <NrBtn number={7} handleClick={this.addToExp.bind(this)} />
-          <NrBtn number={8} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={9} handleClick={this.addToExp.bind(this)}/>
+          <Output exp={this.state.firstNr} />
+          <NrBtn number={7} handleClick={this.addToExp} />
+          <NrBtn number={8} handleClick={this.addToExp} />
+          <NrBtn number={9} handleClick={this.addToExp} />
           <Operator number={'/'} />
           <Operator number={'%'} />
-          <NrBtn number={4} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={5} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={6} handleClick={this.addToExp.bind(this)}/>
+          <NrBtn number={4} handleClick={this.addToExp} />
+          <NrBtn number={5} handleClick={this.addToExp} />
+          <NrBtn number={6} handleClick={this.addToExp} />
           <Operator number={'*'} />
           <Operator number={'1/x'} />
-          <NrBtn number={1} handleClick={this.addToExp.bind(this)}/>
-          <NrBtn number={2} handleClick={this.addToExp.bind(this)} />
-          <NrBtn number={3} handleClick={this.addToExp.bind(this)}/>
+          <NrBtn number={1} handleClick={this.addToExp} />
+          <NrBtn number={2} handleClick={this.addToExp} />
+          <NrBtn number={3} handleClick={this.addToExp} />
           <Operator number={'-'} />
           <Operator number={'+'} />
           <Operator number={','} />
-          <NrBtn number={'0'} handleClick={this.addToExp.bind(this)}/>
+          <NrBtn number={'0'} handleClick={this.addToExp} />
           <Operator number={'='} />
         </div>
       </Paper>
