@@ -13,31 +13,33 @@ class Calc extends Component {
   }
   
   addToExp (val) {
-    
+    this.setState({
+      exp: this.state.exp + val
+    })
   }
 
   render () {
     return (
       <Paper className={styles.container}>
         <div >
-          <Output />
-          <NrBtn number={7} />
-          <NrBtn number={8} />
-          <NrBtn number={9} />
+          <Output exp={this.state.exp} />
+          <NrBtn number={7} handleClick={this.addToExp.bind(this)} />
+          <NrBtn number={8} handleClick={this.addToExp.bind(this)}/>
+          <NrBtn number={9} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={'/'} />
           <NrBtn number={'%'} />
-          <NrBtn number={4} />
-          <NrBtn number={5} />
-          <NrBtn number={6} />
+          <NrBtn number={4} handleClick={this.addToExp.bind(this)}/>
+          <NrBtn number={5} handleClick={this.addToExp.bind(this)}/>
+          <NrBtn number={6} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={'*'} />
           <NrBtn number={'1/x'} />
-          <NrBtn number={1} />
-          <NrBtn number={2} />
-          <NrBtn number={3} />
+          <NrBtn number={1} handleClick={this.addToExp.bind(this)}/>
+          <NrBtn number={2} handleClick={this.addToExp.bind(this)} />
+          <NrBtn number={3} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={'-'} />
           <NrBtn number={'+'} />
           <NrBtn number={','} />
-          <NrBtn number={0} />
+          <NrBtn number={'0'} handleClick={this.addToExp.bind(this)}/>
           <NrBtn number={'='} />
         </div>
       </Paper>

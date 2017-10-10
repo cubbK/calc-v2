@@ -5,7 +5,7 @@ class Output extends Component {
     render() {
         return (
             <div className={styles.output}>
-                Output
+                {this.props.exp}
             </div>
         )
     }

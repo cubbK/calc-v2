@@ -5,9 +5,11 @@ import styles from './styles.module.styl'
 class NrBtn extends Component {
     render () {
         return (
-            <FlatButton className={styles.btn}>
-                {this.props.number}
-            </FlatButton>
+            <FlatButton 
+                className={styles.btn}
+                label={this.props.number} 
+                onClick={() => this.props.handleClick && this.props.handleClick(this.props.number)}
+            />
         )
     }
 }
