@@ -9,6 +9,7 @@ class Operator extends Component {
                 className={styles.btn}
                 primary
                 label={this.props.number}
+                onClick={() => this.props.handleClick(this.props.number)}
             />            
         )
     }

@@ -5,7 +5,9 @@ class Output extends Component {
     render() {
         return (
             <div className={styles.output}>
-                {this.props.exp ==='' ? '0' : this.props.exp}
+                {this.props.firstNr ==='' ? '0' : this.props.firstNr + ' '}
+                {this.props.operator && this.props.operator + ' '}
+                {this.props.secondNr && this.props.secondNr}
             </div>
         )
     }
