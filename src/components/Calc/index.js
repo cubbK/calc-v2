@@ -64,7 +64,6 @@ class Calc extends Component {
       firstNr: result.toString(),
       operator: '',
       secondNr: '',
-      
     })
   }
 
@@ -74,6 +73,49 @@ class Calc extends Component {
       secondNr: '',
       operator: '',
       result: ''
+    })
+  }
+
+  backspace = () => {
+    if (this.state.firstNr !== ''  && this.state.operator === '') {
+      this.setState({
+        firstNr: this.state.firstNr.slice(0, -1)
+      })
+    } else if (this.state.secondNr !== '') {
+      this.setState({
+        secondNr: this.state.secondNr.slice(0, -1)
+      })
+    }
+  }
+
+  sin = () => {
+    const result = Math.sin(this.state.firstNr).toString()
+    this.setState({
+      firstNr: result,
+      operator: '',
+      secondNr: '',
+    })
+  }
+
+  cos = () => {
+    const result = Math.cos(this.state.firstNr).toString()
+    this.setState({
+      firstNr: result,
+      operator: '',
+      secondNr: '',
+    })
+  }
+
+  bin = (base) => {
+    //console.log(base)
+    let result = ''
+    for (const val of this.state.firstNr) {
+     result += val.charCodeAt(0).toString(base)
+    }
+    this.setState({
+      firstNr: result,
+      operator: '',
+      secondNr: '',
     })
   }
 
@@ -101,6 +143,12 @@ class Calc extends Component {
           <NrBtn number={'0'} handleClick={this.addToExp} />
           <Operator number={'='} handleClick={this.evalExp}/>
           <Operator number={'Reset'} handleClick={this.reset} />
+          <Operator number={'<-'} handleClick={this.backspace} />
+          <Operator number={'sin'} handleClick={this.sin} />
+          <Operator number={'cos'} handleClick={this.cos} />
+          <Operator number={'bin'} handleClick={() => this.bin(2)} />
+          <Operator number={'hex'} handleClick={() => this.bin(4)} />
+          <Operator number={'oct'} handleClick={() => this.bin(3)} />
         </div>
       </Paper>
     )
