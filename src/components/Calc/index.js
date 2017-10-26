@@ -57,6 +57,9 @@ class Calc extends Component {
       case '^x' :
         result = Math.pow(firstNr, secondNr)
         break
+      case 'log' :
+        result = Math.log(firstNr, secondNr)
+        break
       default :
         break
     }
@@ -110,13 +113,17 @@ class Calc extends Component {
     //console.log(base)
     let result = ''
     for (const val of this.state.firstNr) {
-     result += val.charCodeAt(0).toString(base)
+     result += Number(val).toString(base)
     }
     this.setState({
       firstNr: result,
       operator: '',
       secondNr: '',
     })
+  }
+
+  toHex(d) {
+    return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
   }
 
   render () {
@@ -147,8 +154,9 @@ class Calc extends Component {
           <Operator number={'sin'} handleClick={this.sin} />
           <Operator number={'cos'} handleClick={this.cos} />
           <Operator number={'bin'} handleClick={() => this.bin(2)} />
-          <Operator number={'hex'} handleClick={() => this.bin(4)} />
-          <Operator number={'oct'} handleClick={() => this.bin(3)} />
+          <Operator number={'hex'} handleClick={() => this.toHex} />
+          <Operator number={'oct'} handleClick={() => this.bin(8)} />
+          <Operator number={'log'} handleClick={this.addOperator} />
         </div>
       </Paper>
     )
