@@ -4,6 +4,7 @@ import Operator from './Operator'
 import Output from './Output'
 import Paper from 'material-ui/Paper'
 import styles from './styles.module.styl'
+const NumberConverter = require("number-converter").NumberConverter
 
 class Calc extends Component {
   constructor () {
@@ -109,12 +110,21 @@ class Calc extends Component {
     })
   }
 
-  bin = (base) => {
+  toBin = () => {
     //console.log(base)
-    let result = ''
-    for (const val of this.state.firstNr) {
-     result += Number(val).toString(base)
-    }
+    const nc = new NumberConverter(NumberConverter.DECIMAL, NumberConverter.BINARY)
+    const result = nc.convert(this.state.firstNr)
+    this.setState({
+      firstNr: result,
+      operator: '',
+      secondNr: '',
+    })
+    console.log('trigger na')
+  }
+
+  toHex = () => {
+    const nc = new NumberConverter(NumberConverter.DECIMAL, NumberConverter.HEXADECIMAL)
+    const result = nc.convert(this.state.firstNr)
     this.setState({
       firstNr: result,
       operator: '',
@@ -122,8 +132,14 @@ class Calc extends Component {
     })
   }
 
-  toHex(d) {
-    return  ("0"+(Number(d).toString(16))).slice(-2).toUpperCase()
+  toOct = () => {
+    const nc = new NumberConverter(NumberConverter.DECIMAL, NumberConverter.OCTAL)
+    const result = nc.convert(this.state.firstNr)
+    this.setState({
+      firstNr: result,
+      operator: '',
+      secondNr: '',
+    })
   }
 
   render () {
@@ -153,9 +169,9 @@ class Calc extends Component {
           <Operator number={'<-'} handleClick={this.backspace} />
           <Operator number={'sin'} handleClick={this.sin} />
           <Operator number={'cos'} handleClick={this.cos} />
-          <Operator number={'bin'} handleClick={() => this.bin(2)} />
-          <Operator number={'hex'} handleClick={() => this.toHex} />
-          <Operator number={'oct'} handleClick={() => this.bin(8)} />
+          <Operator number={'bin'} handleClick={this.toBin} />
+          <Operator number={'hex'} handleClick={this.toHex} />
+          <Operator number={'oct'} handleClick={this.toOct} />
           <Operator number={'log'} handleClick={this.addOperator} />
         </div>
       </Paper>
