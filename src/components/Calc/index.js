@@ -13,7 +13,8 @@ class Calc extends Component {
       firstNr: '',
       secondNr: '',
       operator: '',
-      result: ''
+      result: '',
+      memoryNr: ''
     }
   }
   
@@ -119,7 +120,6 @@ class Calc extends Component {
       operator: '',
       secondNr: '',
     })
-    console.log('trigger na')
   }
 
   toHex = () => {
@@ -141,6 +141,20 @@ class Calc extends Component {
       secondNr: '',
     })
   }
+
+  storeToMem = () => {
+    this.setState({
+      memoryNr: this.state.firstNr
+    })
+  }
+
+  resetMem = () => {
+    this.setState({
+      memoryNr: ''
+    })
+  }
+
+  
 
   render () {
     return (
@@ -173,6 +187,10 @@ class Calc extends Component {
           <Operator number={'hex'} handleClick={this.toHex} />
           <Operator number={'oct'} handleClick={this.toOct} />
           <Operator number={'log'} handleClick={this.addOperator} />
+          <Operator number={'MC'} handleClick={this.resetMem} />
+          <Operator number={'MS'} handleClick={this.storeToMem} />
+          <Operator number={'M+'} handleClick={this.addOperator} />
+          <Operator number={'M-'} handleClick={this.addOperator} />
         </div>
       </Paper>
     )
