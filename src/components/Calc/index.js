@@ -72,6 +72,12 @@ class Calc extends Component {
     })
   }
 
+  sqrt = () => {
+    this.setState({
+      firstNr: Math.sqrt(Number(this.state.firstNr))
+    })
+  }
+
   reset = () => {
     this.setState({
       firstNr: '',
@@ -144,8 +150,9 @@ class Calc extends Component {
 
   storeToMem = () => {
     this.setState({
-      memoryNr: this.state.firstNr
+      memoryNr: this.state.firstNr.toString()
     })
+    console.log(this.state.memoryNr)
   }
 
   resetMem = () => {
@@ -154,7 +161,24 @@ class Calc extends Component {
     })
   }
 
+  addToMem = () => {
+    this.setState({
+      memoryNr: (Number(this.state.memoryNr) + Number(this.state.firstNr)).toString()
+    })
+    console.log(this.state.memoryNr)
+  }
   
+  substractFromMem = () => {
+    this.setState({
+      memoryNr: (Number(this.state.memoryNr) - Number(this.state.firstNr)).toString()
+    })
+  }
+
+  showMemNr = () => {
+    this.setState({
+      firstNr: this.state.memoryNr
+    })
+  }
 
   render () {
     return (
@@ -189,8 +213,10 @@ class Calc extends Component {
           <Operator number={'log'} handleClick={this.addOperator} />
           <Operator number={'MC'} handleClick={this.resetMem} />
           <Operator number={'MS'} handleClick={this.storeToMem} />
-          <Operator number={'M+'} handleClick={this.addOperator} />
-          <Operator number={'M-'} handleClick={this.addOperator} />
+          <Operator number={'M+'} handleClick={this.addToMem} />
+          <Operator number={'M-'} handleClick={this.substractFromMem} />
+          <Operator number={'MR'} handleClick={this.showMemNr} />
+          <Operator number={'sqrt'} handleClick={this.sqrt} />
         </div>
       </Paper>
     )
